@@ -52,10 +52,10 @@ $query8 = mysqli_query($con, $sql8);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <title>Datos Producción en Línea</title>
     <style>
-        body {
-            background: url('img/circuito.avif') no-repeat center center fixed;
-            background-size: cover;
-        }
+    body {
+        background: url('img/circuito.avif') no-repeat center center fixed;
+        background-size: cover;
+    }
     </style>
 </head>
 
@@ -71,21 +71,25 @@ $query8 = mysqli_query($con, $sql8);
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #20279F; border-radius: 10px; font-size: 18px; color: aqua;">
+                <nav class="navbar navbar-expand-lg navbar-dark"
+                    style="background-color: #20279F; border-radius: 10px; font-size: 18px; color: aqua;">
 
                     <div>
                         <a class="navbar-brand" href="#" style="margin-left: 20px;">Ir a</a>
                     </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="rounded btn btn-warning" href="#" style="margin-left: 50px;" onclick="redirigirAotroArchivo1()">Ver Producción</a>
+                                <a class="rounded btn btn-warning" href="#" style="margin-left: 50px;"
+                                    onclick="redirigirAotroArchivo1()">Ver Producción</a>
                             </li>
                             <li class="nav-item">
-                                <a class="rounded btn btn-danger" href="#" style="margin-left: 50px;" onclick="redirigirAotroArchivo1()">Ver Producción</a>
+                                <a class="rounded btn btn-danger" href="#" style="margin-left: 50px;"
+                                    onclick="redirigirAotroArchivo1()">Ver Producción</a>
                             </li>
                         </ul>
                     </div>
@@ -99,7 +103,7 @@ $query8 = mysqli_query($con, $sql8);
         <div class="row">
             <div class="col-md-6">
 
-                <h1 class="my-5" style="color: aquamarine;">Datos Cliente </h1>
+                <h1 class="my-5" style="color: aquamarine;">Datosssssssssss Cliente </h1>
 
 
                 <div class="card bg-warning">
@@ -111,17 +115,20 @@ $query8 = mysqli_query($con, $sql8);
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="Nombre_cliente" class="form-label">Nombre Cliente</label>
-                                    <input type="text" class="form-control" id="Nombre_cliente" name="Nombre_cliente" placeholder="Nombre Cliente">
+                                    <input type="text" class="form-control" id="Nombre_cliente" name="Nombre_cliente"
+                                        placeholder="Nombre Cliente">
 
                                 </div>
                                 <div class="col-md-6">
                                     <label for="id_pedido" class="form-label">ID Pedido</label>
-                                    <input type="text" class="form-control" id="id_pedido" name="id_pedido" placeholder="ID Pedido">
+                                    <input type="text" class="form-control" id="id_pedido" name="id_pedido"
+                                        placeholder="ID Pedido">
                                 </div>
                                 <div class="md-6">
 
                                     <label for="Direccion" class="form-label">Direccion</label>
-                                    <input type="text" class="form-control" id="Direccion" name="Direccion" placeholder="Direccion">
+                                    <input type="text" class="form-control" id="Direccion" name="Direccion"
+                                        placeholder="Direccion">
                                 </div>
                             </div>
                             <br>
@@ -138,7 +145,8 @@ $query8 = mysqli_query($con, $sql8);
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="datos_produccion_id" class="form-label">ID Produccion</label>
-                                    <input type="text" class="form-control" id="datos_produccion_id" name="datos_produccion_id" placeholder="ID Produccion">
+                                    <input type="text" class="form-control" id="datos_produccion_id"
+                                        name="datos_produccion_id" placeholder="ID Produccion">
                                 </div>
                                 <!-- <td data-hidden-value="produccion_id" class='text-center'><a href='#'
                                         data-produccion-id='<?php echo $produccion_id; ?>' class='actualizar-link'><i
@@ -170,12 +178,14 @@ $query8 = mysqli_query($con, $sql8);
                             <div class="row">
                                 <div class="col-md-8">
                                     <label class="form-label">Nombre Pedido</label>
-                                    <input type="text" class="form-control" id="nombre_pedido" name="nombre_pedido" placeholder="Nombre Pedido">
+                                    <input type="text" class="form-control" id="nombre_pedido" name="nombre_pedido"
+                                        placeholder="Nombre Pedido">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">Cantidad</label>
-                                    <input type="text" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad">
+                                    <input type="text" class="form-control" id="cantidad" name="cantidad"
+                                        placeholder="Cantidad">
                                 </div>
                             </div>
                             <br>
@@ -193,10 +203,12 @@ $query8 = mysqli_query($con, $sql8);
                             <div class="row">
                                 <div class="col-md-6">
                                     <p>Fecha</p>
-                                    <input class="form-control" type="text" name="datepicker" id="datepicker" autocomplete="off">
+                                    <input class="form-control" type="text" name="datepicker" id="datepicker"
+                                        autocomplete="off">
                                     <!-- <label class="form-label">Folio de Producción</label> -->
                                     <p>Folio</p>
-                                    <input type="number" class="form-control" name="folio_produccion" id="folio_produccion" placeholder="Ingrese folio" autocomplete="off">
+                                    <input type="number" class="form-control" name="folio_produccion"
+                                        id="folio_produccion" placeholder="Ingrese folio" autocomplete="off">
                                 </div>
 
                                 <div class="mb-3">
@@ -229,15 +241,18 @@ $query8 = mysqli_query($con, $sql8);
 
                                     <div class="col-md-4">
                                         <label class="form-label">Valor Procesos</label>
-                                        <input type="number" class="form-control" id="valor_proceso" placeholder="Valor Proceso" readonly disabled>
+                                        <input type="number" class="form-control" id="valor_proceso"
+                                            placeholder="Valor Proceso" readonly disabled>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-label">Unidad de medida</label>
-                                        <input type="text" class="form-control" name="uni_med" id="uni_med" placeholder="unidad de medida" readonly disabled>
+                                        <input type="text" class="form-control" name="uni_med" id="uni_med"
+                                            placeholder="unidad de medida" readonly disabled>
                                     </div>
                                     <div>
                                         <!-- <p>nombre_proceso</p> -->
-                                        <input type="hidden" class="form-control" id="nombre_proceso" name="nombre_proceso" placeholder="nombre_proceso" readonly>
+                                        <input type="hidden" class="form-control" id="nombre_proceso"
+                                            name="nombre_proceso" placeholder="nombre_proceso" readonly>
                                     </div>
                                     <!-- <div>
                                         <p>nombre_proceso</p>
@@ -256,13 +271,15 @@ $query8 = mysqli_query($con, $sql8);
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Cantidad realizada</label>
-                                        <input type="number" class="form-control" name="cantidad_pzs" id="cantidad_pzs" placeholder="ingrese cantidad realizada">
+                                        <input type="number" class="form-control" name="cantidad_pzs" id="cantidad_pzs"
+                                            placeholder="ingrese cantidad realizada">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <p>Valor total procesado</p>
-                                    <input type="number" class="form-control" name="total_proceso" id="total_proceso" placeholder="Total Proceso" readonly>
+                                    <input type="number" class="form-control" name="total_proceso" id="total_proceso"
+                                        placeholder="Total Proceso" readonly>
                                 </div>
 
                             </div>
@@ -300,11 +317,13 @@ $query8 = mysqli_query($con, $sql8);
 </body>
 
 </html>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css"
+    rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="js/funcionEditProcesos.js"></script>
 <script src="js/codigoIndex.js"></script>
