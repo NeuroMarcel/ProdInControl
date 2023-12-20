@@ -1,0 +1,29 @@
+$("#maquina").on('change', function() {
+  
+    var parametros = {
+       "value" : $(this).val(),
+       "nombre_iuari" : "qweqwe",
+    }
+    Carga_proceso(parametros);
+})
+
+function Carga_proceso(parametros) {
+    $.ajax({
+        url:"procesos.php",
+        type: 'POST',
+        data: parametros,
+        dataType: 'json',
+        cache: false,
+        success: function(response) {
+            $('#procesos').empty();
+            $('<option selected disabled>').val('').text('.::Proceso::.').appendTo('#procesos');
+            $.each(response.result['data'], function(k, v) {
+                $('<option>').val(v.procesos_id).text(v.nombre_proceso).appendTo('#procesos');
+            });
+        },
+        error: function() {
+            
+        },
+        async: false,
+    });
+}

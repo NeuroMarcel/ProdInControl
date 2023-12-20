@@ -1,0 +1,114 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="cs/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="js/saludo.js"></script>
+    <title>Praactica</title>
+</head>
+<body>
+    <div id="cliente">
+        
+            <h1>Datos Cliente</h1>
+            <br>
+            <input type="text" name="pk_produccion_id" placeholder="id produccion">
+            <input type="text" name="id_cliente" placeholder="id cliente">
+            <input type="text" name="Nombre_cliente" placeholder="Nombre cliente">
+            <input type="text" name="Direccion" placeholder="Direccion" >
+            <input type="text" name="id_pedido" placeholder="ID pedido" >
+            <br>
+            <input type="submit" value="Agregar cliente" id="produccion">
+        
+    </div>
+    <div id="operador">
+        <form action="insert_produccion.php" method="POST">
+            <h1>Datos produccion</h1>
+            <br>
+            <input type="text" name="datos_produccion_id" placeholder="ingrese id de produccion">
+            <input type="text" name="fecha" placeholder="ingrese fecha">
+            <input type="text" name="folio" placeholder="ingrese folio" >
+            <input type="text" name="op" placeholder="ingrese OP" >
+            <input type="text" name="item" placeholder="ID pedido" >
+            <input type="text" name="nombre_pedido" placeholder="ingrese nombre del pedido">
+            <input type="text" name="total_cant_productos" placeholder="Total piezas solicitadas">
+            <input type="text" name="total_pzs_realizadas" placeholder="ingrese total piezas realizadas">
+            <br>
+            <input type="submit" value="Agregar produccion">
+        </form>
+    </div>
+    <div id="linea">
+        <form action="insert_pr_linea.php" method="POST">
+            <h1>Datos produccion en linea</h1>
+            <br>
+            <!--<input type="text" name="produccion_linea_id" placeholder="Ingrese id de produccion en linea">-->
+            <input type="text" name="produccion_id" placeholder="Ingrese id de produccion">
+            <input type="text" name="folio" placeholder="Ingrese folio" >
+            <!--<input type="text" name="maquina" placeholder="Ingrese maquina" >-->
+            <select name="" id="maquina">
+                <option value="" disabled selected></option>
+            </select>
+            <!-- <input type="text" name="cod_proceso" placeholder="Ingrese codigo de proceso"> -->
+            <select name="" id="procesos"> 
+            </select>
+            <input type="text" name="valor_proceso" id="valor_proceso" placeholder="Ingrese cantidad pzs" readonly>
+
+            <!--<input type="text" name="nombre_proceso" placeholder="Ingrese nombre de proceso">-->
+            <input type="text" name="cantidad_pzs" placeholder="Ingrese cantidad pzs">
+            <!-- <input type="text" name="id_operador" placeholder="Ingrese id de operador"> -->
+            
+            <input type="text" name="cod_operador" id="cod_operador" placeholder="Ingrese codigo de operador">
+            
+            <input type="text" name="nombre_operador" placeholder="Ingrese nombre de operador">
+            <br>
+            <input type="submit" value="Agregar produccion">
+        </form>
+    </div>
+    
+</body>
+</html>
+<script>
+    $("#produccion").on('click', function() {
+        console.log("qqqq");
+        console.log("qqqq");
+        event.preventDefault(); // Evitar el envío del formulario por defecto
+    
+        // Obtener los valores de los campos del formulario
+        var pk_produccion_id = document.getElementById("pk_produccion_id").value;
+        var id_cliente = document.getElementById("id_cliente").value;
+        var Nombre_cliente = document.getElementById("Nombre_cliente").value;
+        var Direccion = document.getElementById("Direccion").value;
+        var id_pedido = document.getElementById("id_pedido").value;
+    
+        // Crear un objeto XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+    
+        // Configurar la solicitud
+        xhr.open("POST", "insert_cliente.php", true);
+    
+        // Configurar el encabezado de la solicitud
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+        // Enviar los datos del formulario al archivo PHP
+        xhr.send("pk_produccion_id=" + encodeURIComponent(pk_produccion_id) + "&id_cliente=" + encodeURIComponent(id_cliente)
+        + "&Nombre_cliente=" + encodeURIComponent(Nombre_cliente)+ "&Direccion=" + encodeURIComponent(Direccion)
+         + "&id_pedido=" + encodeURIComponent(id_pedido) );
+    
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // La solicitud se completó correctamente
+              console.log(xhr.responseText);
+            } else {
+              // Hubo un error en la solicitud
+              console.error("Error en la solicitud: " + xhr.status);
+            }
+          }
+        };
+    })
+        
+
+</script>
+
+

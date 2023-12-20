@@ -1,0 +1,509 @@
+<script>   
+$("#Agregar produccion").on('click', function() {
+  
+    var parametros = {
+       "valor_proceso" :$("#valor_proceso").val(),
+       "cantidad_pzs" :$("#cantidad_pzs").val(),
+       "cod_operador" :$("#cod_operador").val(),
+       "nombre_operador" :$("#nombre_operador").val(),
+       
+       
+       
+    }
+
+    $.ajax({
+      url:"procesos.php",
+      type: 'POST',
+      data: parametros,
+      dataType: 'json',
+      success: function(response) {
+         
+      },
+      error: function() {
+      }
+    });
+});
+
+function Carga_proceso(parametros) {
+    
+}
+________________________________________________________________________________
+
+//echo json_encode("El numero del listado es: ". $cod_proceso, JSON_PRETTY_PRINT);
+
+// $valor_proceso = $_POST['valor_proceso'];  
+// $cantidad_pzs = $_POST['cantidad_pzs'];  
+// $cod_operador = $_POST['cod_operador'];  
+// $nombre_operador = $_POST['nombre_operador'];  
+
+// echo json_encode($valor_proceso,$cantidad_pzs, JSON_UNESCAPED_UNICODE);
+// echo json_encode($cod_operador,$nombre_operador, JSON_UNESCAPED_UNICODE);
+
+_____________________________________________________________________________________
+
+//$cod_proceso = $_POST['codigo_proceso'];  
+
+$query = "SELECT w.procesos_id ,w.nombre_proceso  FROM practica.proceso_maquina_fk x 
+left join practica.procesos w on w.procesos_id = x.procesos_id 
+left join practica.maquina z on z.maquina_id = x.maquina_id 
+where x.maquina_id = $value ";
+$result = mysqli_query ($con,$query);
+
+
+ while($row = mysqli_fetch_array($result)){
+    $output[] = $row;
+ }
+ $data["result"] = [
+    "data" => $output,
+];
+echo json_encode($data, JSON_UNESCAPED_UNICODE);
+
+
+//echo json_encode("El numero del listado es: ". $cod_proceso, JSON_PRETTY_PRINT);
+_____________________________________________________________________________________
+
+______________________________________________________________________________________
+
+$("#Agregar_produccion").on('click', function() {
+  
+    var parametros = {
+        "produccion_id" :$("#produccion_id").val(),
+        "folio" :$("#folio").val(),
+       "valor_proceso" :$("#valor_proceso").val(),
+       "cantidad_pzs" :$("#cantidad_pzs").val(),
+       "cod_operador" :$("#cod_operador").val(),
+       "nombre_operador" :$("#nombre_operador").val(),
+       
+       
+       
+    }
+
+    $.ajax({
+      url:"procesos.php",
+      type: 'POST',
+      data: parametros,
+      dataType: 'json',
+      success: function(response) {
+         
+      },
+      error: function() {
+      }
+    });
+});
+
+function Carga_proceso(parametros) {
+    
+}  
+
+
+
+// ______________________________________________________________________________
+ $("#procesos").on('change', function() {
+    var x = $(this).val();
+    var y = $(this).find("option:selected").text();
+
+    
+      var parametros = {
+        "value" :x,
+        "value2" :y,
+     }
+
+     $.ajax({
+      url:"aso_procesos.php",
+      type: 'POST',
+      data: parametros,
+      dataType: 'json',
+      success: function(response) {
+        $("#valor_proceso").val(response)
+
+      },
+      error: function() {
+      }
+    });
+//     $.ajax({
+//        url:"procesos.php",
+//        type: 'POST',
+//        data: parametros,
+//        dataType: 'json',
+//        success: function(response) {
+         
+//       },
+//        error: function() {
+//        }
+//      });
+ });
+
+ function Carga_proceso(parametros) {
+    
+ }
+//-------------------------------------------------------------------------------
+
+$("#maquina").on('change', function() {
+var parametros = {
+   "value" : $(this).val(),
+}
+carga_datos_procesos(parametros);
+})
+function carga_datos_procesos(parametros) {
+  $.ajax({
+      url:"procesos.php",
+      type: 'POST',
+      data: parametros,
+      dataType: 'json',
+      cache: false,
+      success: function(response) {
+          $.each(response.result['data'], function(k, v) {
+              $('#valor_proceso').val(v.pzs_hra);
+          });
+      },
+      error: function() {
+      },
+      async: false,
+    });
+}
+
+$('#cod_operador').on('keydown', function(event) {
+    // Obtener el código de la tecla presionada
+    var codigoTecla = event.which;
+
+    // Verificar si la tecla presionada es Enter (código 13) o Tab (código 9)
+    if (codigoTecla === 13) {
+        if (event.which === 13) {
+      // Si se presiona Enter
+
+      // Obtener el valor de la celda en la primera columna de la primera fila
+      var valorCelda = $('#miTabla tbody tr:first-child td:first-child').text();
+
+      // Realizar la acción deseada con el valor de la celda
+      console.log('Valor de la celda:', valorCelda);
+    }
+
+
+        alert("El operador seleccionado es: ");
+      // Aquí puedes agregar cualquier acción que desees realizar con Enter
+    } else if (codigoTecla === 9) {
+      // Acción cuando se presiona Tab
+      alert("Se presionó Tab");
+      // Aquí puedes agregar cualquier acción que desees realizar con Tab
+    }
+  });
+____________________________________________________________________________________________________________
+
+##################################### CODIGO ACTUAL FUNCIONAL ##############################################
+
+  $("#cod_operador1,#cod_operador2,#cod_operador3").on('keydown', function(e) {
+    var code = e.keyCode || e.which;
+    if (code == 13 ) {
+
+    //esta es la tecla "enter"
+    var str = $(this).attr('id');
+     const last = str.split('_').slice(-1)[0]
+  
+    var x = $(this).val();
+    // var y = $(this).find("option:selected").text();
+    var parametros = {
+        "codigo_operador": x,
+        "last": last,
+        
+    }
+    console.log(last);
+
+    Carga_operador(parametros); // Llamada a la función Carga_operador
+    e.preventDefault();//nota: esta funcion evita que se ejecute el boton al ingresar text en el input
+}
+
+    function Carga_operador(parametros) {
+        $.ajax({
+            url: "nombre_operador.php",
+            type: 'POST',
+            data: parametros,
+            dataType: 'json',
+            success: function(response) {
+                if (response.result && response.result.data) {
+                // Verificar si la respuesta contiene datos válidos
+                var nombreOperador = response.result.data.nombre;
+
+                // Manipular el nombre del operador según tus necesidades
+                 $("#nombre_"+parametros["last"]).val(nombreOperador);
+            } else {
+                // Manejar el caso en el que no se encuentra el operador
+                console.error("Operador no encontrado");
+            }
+        },
+        error: function() {
+            // Manejar errores de la solicitud AJAX
+            console.error("Error en la solicitud AJAX");
+        }
+        });
+    }
+});
+______________________________________________________________________________
+
+//   // Agrega un event listener para el evento input
+//   cod_operador.addEventListener("input", function() {
+//     // La función se ejecutará cada vez que se ingrese un dato en el input
+//     console.log("Dato ingresado:", cod_operador.value);
+//   });
+//   $(document).ready(function() {
+//   // Cuando el documento esté listo, ejecuta el código dentro de esta función
+
+//   // Realiza la consulta AJAX
+//   $.ajax({
+//     url: 'lista_operadores.php', // URL del archivo PHP
+//     type: 'GET', // Método HTTP (GET en este caso)
+//     dataType: 'json', // Tipo de datos esperados en la respuesta (puedes ajustar esto según tu necesidad)
+//     success: function(data) {
+//       // La función que se ejecutará si la consulta es exitosa
+//       console.log('Datos recibidos:', data);
+
+//       // Aquí puedes manipular los datos según tus necesidades
+//     },
+//     error: function(xhr, status, error) {
+//       // La función que se ejecutará si hay un error en la consulta
+//       console.error('Error en la consulta AJAX:', status, error);
+//     }
+//   });
+// });
+// $("#codigo_operador").on("input", function() {
+//     var codigoOperador = $(this).val();
+//     carga_operadores(parametros)
+//     // Realizar una solicitud AJAX al servidor para obtener el nombre del operador
+//     function Carga_operadores(parametros) {
+//     $.ajax({
+//         type: "POST",
+//         url: "nombre_operador.php", // Nombre del archivo PHP que manejará la solicitud
+//         data: { codigo_operador: codigoOperador },
+//         success: function(response) {
+//             // Actualizar el valor del input de nombre_operador con la respuesta del servidor
+//             $("#nombre_operador").val(response);
+//         }
+//     });
+// }
+// });________________________________________________________________________________________________________________________________________________________________________________________________
+  ________________________________________________________________________________
+  |                                                                               |
+ |  ############################################################################### |
+| funcion que evita presionar el boton con campos vacios(incompleta con un error)    |
+ |  ############################################################################### |  
+  |_______________________________________________________________________________|
+$("#Agregar_produccion").on('click', function() {
+    // Llama a la función validarCampos antes de realizar la acción
+    if (validarCampos()) {
+        // Obtiene los valores de los campos
+        var cod_operador1 = $("#cod_operador1").val();
+        var cod_operador2 = $("#cod_operador2").val();
+        var cod_operador3 = $("#cod_operador3").val();
+        
+
+        // Realiza la acción asociada al clic del botón
+        $.ajax({
+            url: "nombre_operador.php", // Ruta al archivo PHP que maneja la inserción en la base de datos
+            type: 'POST',
+            data: {
+                validarCampos: true,
+                
+            },
+            success: function(response) {
+                console.log(response); // Muestra la respuesta del servidor en la consola
+                // Puedes realizar otras acciones después de una inserción exitosa
+                
+            },
+            error: function() {
+                console.error("Error al guardar en la base de datos");
+            }
+        });
+    }
+});
+function validarCampos() {
+    var cod_operador1 = $("#cod_operador1").val();
+    var cod_operador2 = $("#cod_operador2").val();
+    var cod_operador3 = $("#cod_operador3").val();
+
+    if (cod_operador1 === '' && cod_operador2 === '' && cod_operador3 === '') {
+        alert('Debe llenar al menos un campo antes de continuar.');
+        return false;
+        
+    }
+
+    return true;
+} 
+======================================================================================================================
+
+<?php
+include('conection.php');
+$con = conection();
+
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Datos Producción en Línea</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <div class="row">
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <button type="button" class="btn btn-primary" name="btnMuestra" id="btnMuestra"> Ver data</button> -->
+                    <table class="table table-bordered border-primary" name="muestra" id="muestra">
+                        <tr>
+
+                            <td scope="col" name="date" id="fecha">fecha</td>
+                            <td scope="col" name="nom_proceso" id="nombre_proceso">nombre_proceso</td>
+                            <td scope="col" name="cant_pzs" id="cantidad_pzs">cantidad_pzs</td>
+                            <td scope="col" name="total_prod" id="total_prod">Total produccion</td>
+                        </tr>
+
+                        <tr>
+                            <form action="actualizar.php" method="POST">
+
+                                <td>
+                                    <input type="hidden" class="form-control" id="produccion_id" value="<?php echo $produccion_id; ?>" name="produccion_id">
+                                </td>
+
+                                <td><input type="date" class="form-control" id="fecha" value="" name="fecha" placeholder="fecha"></td>
+                                <td><input type="text" class="form-control" id="nombre_proceso" value="" name="nombre_proceso" placeholder="nombre_proceso"></td>
+                                <td><input type="number" class="form-control" id="cantidad_pzs" name="cantidad_pzs" placeholder="cantidad_pzs"></td>
+                                <!-- Cambio en la línea siguiente: type="number" en lugar de type="nuber" -->
+                                <td><input type="number" class="form-control" id="total_prod" name="total_prod" placeholder="total_prod"></td>
+
+                                <td><input type="submit" class="container_submit" class="container_submit-actualizar" id="actualizar" name="actualizar" value="Actualizar"></td>
+                                <!-- ... -->
+                            </form>
+
+
+                        </tr>
+                </div>
+
+                <tbody id="tbody_muestra"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <div class="container mt-5">
+
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
+<!-- _______________________________________________________________ -->
+<script>
+    $('#muestra').on('click', 'i.actualizar', function(e) {
+        var produccion_id = $(this).closest('tr').find('input[name=produccion_id]').val();
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "center",
+
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Actualizacion exitosa"
+        });
+        window.location.href = 'actualizar.php?id=' + produccion_id;
+    });
+</script>
+
+
+// $('#muestra').on('click', 'i.actualizar', function(e) {
+//     var produccion_id = $(this).closest('tr').find('input[name=produccion_id]').val();
+//     const Toast = Swal.mixin({
+//         toast: true,
+//         position: "center",
+
+//         showConfirmButton: false,
+//         timer: 3000,
+//         timerProgressBar: true,
+//         didOpen: (toast) => {
+//             toast.onmouseenter = Swal.stopTimer;
+//             toast.onmouseleave = Swal.resumeTimer;
+//         }
+//     });
+//     Toast.fire({
+//         icon: "success",
+//         title: "Actualizacion exitosa"
+//     });
+//     window.location.href = 'actualizar.php?id=' + produccion_id;
+// });
+
+//-----------------------------------------------------------------------------
+ // var fecha = $("#date").val();
+    // var nom_proceso = $("#nom_proceso").val();
+    // var cant_pzs = $("#cant_pzs").val();
+    // var total = $("#total_prod")
+    // var muestra = {
+    //     "fecha": fecha,
+    //     "nom_proceso": nom_proceso,
+    //     "cant_pzs": cant_pzs,
+    //     "total_prod": total_prod
+    // }
+//-----------------------------------------------------------------------------
+
+// function borrarProduccion(produccion_id) {
+//     $.ajax({
+//         url: "muestra_produccion.php",
+//         data: {
+//             produccion_id: produccion_id
+//         },
+//         type: "POST",
+//         dataType: "json",
+//         async: false,
+//         success: function(response) {
+
+
+//         },
+//         error: function(error) {
+//             // Maneja errores en caso de que la solicitud falle
+//         }
+
+//     });
+
+// };
+
+-----------------------------librerias swal advertencia---------------------------------
+
+// Swal.fire({
+    //     title: "Are you sure?",
+    //     text: "Seguro que quieres borrar esta tabla?!",
+    //     icon: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "Yes, delete it!"
+    // }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         Swal.fire({
+    //             title: "Deleted!",
+    //             text: "Your file has been deleted.",
+    //             icon: "success"
+    //         });
+    //     }
+    // });

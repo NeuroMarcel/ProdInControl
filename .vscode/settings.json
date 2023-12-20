@@ -1,0 +1,8 @@
+{
+  "cmake.configureOnOpen": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  "outline.problems.colors": true,
+  "liveServer.settings.port": 3000
+}
