@@ -22,7 +22,7 @@ if ($query) {
 
         // header("location: index.php");
 
-        echo json_encode("index.php", JSON_UNESCAPED_UNICODE);
+        echo json_encode("https://github.com/NeuroMarcel/index.php", JSON_UNESCAPED_UNICODE);
     } else {
         echo json_encode("", JSON_UNESCAPED_UNICODE);
     }
